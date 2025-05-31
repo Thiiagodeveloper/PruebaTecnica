@@ -1,0 +1,7 @@
+# .dockerignore (ms-inventario)
+node_modules
+dist
+npm-debug.log
+.env
+Dockerfile
+.dockerignore
