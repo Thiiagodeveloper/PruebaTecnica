@@ -1,0 +1,95 @@
+
+services:
+  postgres-db:
+    image: postgres:13
+    container_name: tech_test_postgres_db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: adminpass
+      POSTGRES_DB: productos_db 
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-db.sh:/docker-entrypoint-initdb.d/init-db.sh 
+    networks:
+      - microservices-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d productos_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  ms-productos:
+    build:
+      context: ./ms-productos
+      dockerfile: Dockerfile
+    container_name: tech_test_ms_productos
+    environment:
+      NODE_ENV: development
+      PORT: 3001
+      DB_HOST: postgres-db
+      DB_PORT: 5432
+      DB_USERNAME: admin
+      DB_PASSWORD: adminpass
+      DB_DATABASE_PRODUCTOS: productos_db
+      PRODUCTOS_API_KEY: "SuperClaveSecreta123!" 
+
+    healthcheck:
+      test: CMD-SHELL wget --spider -q http://localhost:3001/api/v1/health || exit 1 
+      interval: 20s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+
+    ports:
+      - "3001:3001"
+    depends_on:
+      postgres-db: 
+        condition: service_healthy
+    volumes:
+      - /usr/src/app/node_modules
+    networks:
+      - microservices-network
+
+
+  ms-inventario:
+    build:
+      context: ./ms-inventario
+      dockerfile: Dockerfile
+    container_name: tech_test_ms_inventario
+    environment:
+      NODE_ENV: development
+      PORT: 3002
+      DB_HOST: postgres-db
+      DB_PORT: 5432
+      DB_USERNAME: admin
+      DB_PASSWORD: adminpass
+      DB_DATABASE_INVENTARIO: inventario_db
+      PRODUCTOS_MS_URL: http://ms-productos:3001/api/v1
+      PRODUCTOS_API_KEY: "SuperClaveSecreta123!" 
+    ports:
+      - "3002:3002"
+    healthcheck:
+      test: ["CMD-SHELL", "wget --spider -q http://localhost:3002/api/v1/health || exit 1"] 
+      interval: 20s
+      timeout: 5s
+      retries: 3
+      start_period: 40s
+      
+    depends_on:
+      postgres-db:
+        condition: service_healthy
+      ms-productos:
+        condition: service_started #
+    volumes:
+      - /usr/src/app/node_modules
+    networks:
+      - microservices-network
+
+volumes:
+  postgres_data:
+
+networks:
+  microservices-network:
+    driver: bridge
