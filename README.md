@@ -2,28 +2,6 @@
 
 Este proyecto implementa un sistema de microservicios para la gestión de productos y su inventario, permitiendo la creación de productos y la simulación de compras que afectan el stock disponible. Ha sido desarrollado como parte de una prueba técnica, utilizando NestJS, Docker y PostgreSQL.
 
-## Tabla de Contenidos
-
-1. [Arquitectura del Sistema](#arquitectura-del-sistema)
-    * [Componentes Principales](#componentes-principales)
-    * [Diagrama de Arquitectura](#diagrama-de-arquitectura)
-    * [Diagrama de Interacción (Flujo de Compra)](#diagrama-de-interacción-flujo-de-compra)
-2. [Decisiones Técnicas y Justificaciones](#decisiones-técnicas-y-justificaciones)
-3. [Instrucciones de Instalación y Ejecución](#instrucciones-de-instalación-y-ejecución)
-    * [Prerrequisitos](#prerrequisitos)
-    * [Configuración](#configuración)
-    * [Levantar el Entorno](#levantar-el-entorno)
-    * [Acceso a los Servicios](#acceso-a-los-servicios)
-4. [Documentación de la API (Swagger)](#documentación-de-la-api-swagger)
-5. [Flujo de Compra Detallado](#flujo-de-compra-detallado)
-6. [Pruebas](#pruebas)
-    * [Pruebas Unitarias](#pruebas-unitarias)
-    * [Pruebas de Integración (E2E)](#pruebas-de-integración-e2e)
-7. [Uso de Herramientas de IA](#uso-de-herramientas-de-ia)
-8. [Consideraciones Adicionales y Mejoras Futuras](#consideraciones-adicionales-y-mejoras-futuras)
-
----
-
 ## 1. Arquitectura del Sistema
 
 El sistema está compuesto por dos microservicios principales que interactúan entre sí y una base de datos PostgreSQL compartida (con esquemas o bases de datos lógicamente separadas por servicio). Todos los componentes están contenerizados usando Docker y orquestados con Docker Compose.
@@ -132,10 +110,9 @@ El cliente (Postman/Swagger UI) interactúa con `ms-productos` o `ms-inventario`
 ### Levantar el Entorno
 
  esde la carpeta raíz del proyecto (`tech-test-microservicios/`):
-
-```bash
+ ```bash
 docker-compose up --build
-
+ ```
 **Acceso a los Servicios**
 Una vez levantado el entorno con Docker Compose:
 
@@ -149,19 +126,18 @@ Una vez levantado el entorno con Docker Compose:
 
 --- 
 
-4. Documentación de la API (Swagger)
+### 4. Documentación de la API (Swagger)
 * Cada microservicio expone su propia documentación de API interactiva generada con Swagger/OpenAPI.
-
 * Documentación de ms-productos: http://localhost:3001/api-docs
-Documentación de ms-inventario: http://localhost:3002/api-docs
-Desde estas interfaces, se pueden explorar todos los endpoints, ver los modelos de datos esperados, los códigos de respuesta y probar las APIs directamente (recordar configurar la API Key en el botón "Authorize" de Swagger si es necesario).
+* Documentación de ms-inventario: http://localhost:3002/api-docs
+* Desde estas interfaces, se pueden explorar todos los endpoints, ver los modelos de datos esperados, los códigos de respuesta y probar las APIs directamente (recordar configurar la API Key en el botón "Authorize" de Swagger si es necesario).
 
-6. Pruebas
+## 5. Pruebas
 El proyecto incluye pruebas unitarias y una estructura para pruebas de integración/E2E.
 
-Pruebas Unitarias
-Cada microservicio (ms-productos y ms-inventario) tiene su propio conjunto de pruebas unitarias para verificar la lógica de los servicios y controladores de forma aislada (usando mocks).
-Para ejecutar:
-Navegar a la carpeta del microservicio (ej. cd ms-productos).
-Ejecutar: npm test
-Para ver la cobertura: npm run test:cov
+**Pruebas Unitarias**
+* Cada microservicio (ms-productos y ms-inventario) tiene su propio conjunto de pruebas unitarias para verificar la lógica de los servicios y controladores de forma aislada (usando mocks).
+* Para ejecutar:
+   Navegar a la carpeta del microservicio (ej. cd ms-productos).
+   Ejecutar: npm test
+   Para ver la cobertura: npm run test:cov
