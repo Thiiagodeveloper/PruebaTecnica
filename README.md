@@ -135,6 +135,24 @@ Una vez levantado el entorno con Docker Compose:
 ## 5. Pruebas
 El proyecto incluye pruebas unitarias y una estructura para pruebas de integración/E2E.
 
+
+## 6. Uso de Herramientas de IA
+
+Para el desarrollo de esta prueba técnica, se utilizó como herramienta de asistencia de Inteligencia Artificial el modelo **Gemini de Google**.
+
+El uso de esta herramienta se centró en las siguientes tareas específicas:
+
+* **Revisión de Calidad del Código:** Se consultó a la IA para obtener sugerencias sobre posibles mejoras en la estructura del código, la aplicación de buenas prácticas y la identificación de posibles optimizaciones o refactorizaciones en los microservicios desarrollados.
+* **Generación y Asistencia en Pruebas Unitarias:** Se empleó la IA para generar esqueletos de pruebas unitarias para los servicios y controladores. Además, se solicitó ayuda para plantear diferentes casos de prueba y para la creación de mocks y aserciones específicas, con el objetivo de alcanzar una alta cobertura y asegurar la fiabilidad de los componentes individuales.
+
+**Proceso de Verificación y Aplicación:**
+Es fundamental destacar que todas las sugerencias y el código propuesto por la herramienta de IA fueron sometidos a un riguroso proceso de revisión y validación manual. Esto incluyó:
+1.  **Análisis Crítico:** Cada sugerencia fue analizada para comprender su impacto y relevancia en el contexto del proyecto.
+2.  **Adaptación:** El código o las estructuras propuestas se adaptaron para alinearse con los requisitos específicos de la prueba y las decisiones de diseño tomadas.
+3.  **Pruebas:** La funcionalidad del código y la efectividad de las pruebas generadas o asistidas por IA fueron verificadas mediante la ejecución de las mismas y la revisión de sus resultados.
+
+El objetivo principal del uso de la IA fue como un apoyo para mejorar la eficiencia y la calidad, pero siempre manteniendo el control y la responsabilidad final sobre el código y la solución implementada por el desarrollador.
+
 **Pruebas Unitarias**
 * Cada microservicio (ms-productos y ms-inventario) tiene su propio conjunto de pruebas unitarias para verificar la lógica de los servicios y controladores de forma aislada (usando mocks).
 * Para ejecutar:
