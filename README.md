@@ -30,17 +30,11 @@ El sistema está compuesto por dos microservicios principales que interactúan e
 
 ### Diagrama de Arquitectura
 
-*(Aquí deberías incluir un diagrama. Puedes usar una herramienta online como draw.io (diagrams.net), Lucidchart, o incluso ASCII art si prefieres algo simple. Sube la imagen a tu repositorio y enlázala aquí, o pégala directamente si la herramienta de Markdown lo permite).*
-
-**Ejemplo de descripción para un diagrama simple:**
-
 El cliente (Postman/Swagger UI) interactúa con `ms-productos` o `ms-inventario`. `ms-inventario` se comunica con `ms-productos` para obtener información de productos durante las consultas de inventario y el proceso de compra. Ambos microservicios se conectan a la instancia de `postgres-db`, cada uno a su respectiva base de datos lógica. Todo el sistema corre dentro de una red Docker gestionada por Docker Compose.
 
 ### Diagrama de Interacción (Flujo de Compra)
 
-*(Similar al anterior, un diagrama que muestre la secuencia de llamadas para el flujo de compra).*
-
-**Ejemplo de descripción para el diagrama de secuencia:**
+**descripción para el diagrama de secuencia:**
 
 1. Cliente envía petición `POST /compras` a `ms-inventario`.
 2. `ms-inventario` recibe la petición.
@@ -109,7 +103,7 @@ El cliente (Postman/Swagger UI) interactúa con `ms-productos` o `ms-inventario`
 
 ### Levantar el Entorno
 
- esde la carpeta raíz del proyecto (`tech-test-microservicios/`):
+ desde la carpeta raíz del proyecto (`tech-test-microservicios/`):
  ```bash
 docker-compose up --build
  ```
@@ -135,7 +129,6 @@ Una vez levantado el entorno con Docker Compose:
 ## 5. Pruebas
 El proyecto incluye pruebas unitarias y una estructura para pruebas de integración/E2E.
 
-
 ## 6. Uso de Herramientas de IA
 
 Para el desarrollo de esta prueba técnica, se utilizó como herramienta de asistencia de Inteligencia Artificial el modelo **Gemini de Google**.
@@ -144,6 +137,8 @@ El uso de esta herramienta se centró en las siguientes tareas específicas:
 
 * **Revisión de Calidad del Código:** Se consultó a la IA para obtener sugerencias sobre posibles mejoras en la estructura del código, la aplicación de buenas prácticas y la identificación de posibles optimizaciones o refactorizaciones en los microservicios desarrollados.
 * **Generación y Asistencia en Pruebas Unitarias:** Se empleó la IA para generar esqueletos de pruebas unitarias para los servicios y controladores. Además, se solicitó ayuda para plantear diferentes casos de prueba y para la creación de mocks y aserciones específicas, con el objetivo de alcanzar una alta cobertura y asegurar la fiabilidad de los componentes individuales.
+
+**Ayuda de realizacion de README:** 
 
 **Proceso de Verificación y Aplicación:**
 Es fundamental destacar que todas las sugerencias y el código propuesto por la herramienta de IA fueron sometidos a un riguroso proceso de revisión y validación manual. Esto incluyó:
